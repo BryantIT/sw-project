@@ -1,4 +1,5 @@
 import React, { useEffect, Fragment, useState } from 'react'
+import './styles.css'
 import { testImages } from './testData'
 
 const LandingPage = () => {
@@ -8,9 +9,9 @@ const LandingPage = () => {
   const imagesToDisplay = () => {
     const imgs = testImages
     let arrayOfImageArrays = []
-    let counter = testImages.length / 5
+    let counter = testImages.length / 10
     while (counter > 0) {
-      const x = imgs.splice(0, 5)
+      const x = imgs.splice(0, 10)
       arrayOfImageArrays.push(x)
       counter--
     }
@@ -39,7 +40,6 @@ const LandingPage = () => {
             ))}
           </div>
         ))}
-        <img src='/images/test1.jpg' alt='featured user'/>
       </div>
     </Fragment> : ''
   )
