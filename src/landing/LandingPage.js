@@ -1,27 +1,19 @@
 import React, { useEffect, Fragment, useState } from 'react'
 import './styles.css'
+import LandingPageModal from './LandingPageModal'
 import { testImages } from './testData'
 
 const LandingPage = () => {
   const [images, setImages] = useState([])
   const [renderImages, setRenderImages] = useState(false)
-
-  const imagesToDisplay = () => {
-    const imgs = testImages
-    let arrayOfImageArrays = []
-    let counter = testImages.length / 10
-    while (counter > 0) {
-      const x = imgs.splice(0, 10)
-      arrayOfImageArrays.push(x)
-      counter--
-    }
-    return arrayOfImageArrays
-  }
+  const [showModal, setShowModal] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-    const value = imagesToDisplay()
-    setImages(value)
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    setImages(testImages)
+    setShowModal(false)
+    setIsLoaded(true)
+  }, [])
 
   useEffect(() => {
     if (images && images.length > 0) {
@@ -29,19 +21,25 @@ const LandingPage = () => {
     }
   }, [images])
 
-  return(
+  const FeaturedUsers = () => {
+  return (
     renderImages ?
     <Fragment>
-      <div className='row'>
-        {images.map((column, index) => (
-          <div className='column' key={index}>
-            {column.map((image, index) => (
-              <img src={`/images/${image.src}`} alt='featured user'/>
-            ))}
-          </div>
-        ))}
-      </div>
+        <div className='grid'>
+          {images.map((image) => (
+            <img src={`/images/${image.src}`} alt={image.caption} />
+          ))}
+        </div>
     </Fragment> : ''
+  )
+  }
+
+  return(
+    isLoaded ?
+      <Fragment>
+        <FeaturedUsers />
+        <LandingPageModal showModal={showModal} />
+      </Fragment> : ''
   )
 }
 

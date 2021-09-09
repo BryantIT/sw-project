@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactModal from 'react-modal'
 import './styles.css'
 
-const LandingPageModal = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+const LandingPageModal = ({ showModal }) => {
+  const [isModalOpen, setIsModalOpen] = useState(showModal)
+  console.log('Is Show: ' + showModal)
+
   return (
     <ReactModal
       isOpen={isModalOpen}

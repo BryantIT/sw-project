@@ -106,19 +106,14 @@ body {
   }
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  border: 3px double #e74c3c;
-}
-
-/* Create two equal columns that sits next to each other */
-
-
-.column img {
-  vertical-align: middle;
-  max-width: 20%;
-  border: 3px double #e74c3c;
-  border-radius: 5px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 20px;
+  align-items: stretch;
+  }
+.grid img {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(231, 76, 60, 0.35);
+  max-width: 100%;
 }
